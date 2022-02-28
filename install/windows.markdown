@@ -1,9 +1,13 @@
 ## Installing on Windows
 
-64-bit Windows 10.0.17763 or later is required to run WezTerm.  You can download
-a setup.exe style installer to guide the installation (requires admin privileges)
-or a simple zip file and manage the files for yourself (no special privileges
-required).
+64-bit Windows 10.0.17763 or later is required to run WezTerm; running on
+earlier versions of Windows is not possible, as WezTerm requires [Pseudo
+Console support that was first released in Windows
+10.0.17763](https://devblogs.microsoft.com/commandline/windows-command-line-introducing-the-windows-pseudo-console-conpty/).
+
+You can download a setup.exe style installer to guide the installation
+(requires admin privileges) or a simple zip file and manage the files for
+yourself (no special privileges required).
 
 <a href="{{ windows_exe_stable }}" class="btn">Windows (setup.exe)</a>
 <a href="{{ windows_exe_nightly }}" class="btn">Nightly Windows (setup.exe)</a>
@@ -26,10 +30,29 @@ installation.
 2. Extract the zipfile and double-click `wezterm.exe` to run the UI
 3. Configuration instructions can be [found here](../config/files.html)
 
-### For `Scoop` users
+### For `winget` users
 
 If you prefer to use the command line to manage installing software,
-then you may wish to try [Scoop](https://scoop.sh/).
+then you may wish to try [winget](https://github.com/microsoft/winget-cli#installing-the-client).
+`winget` is installed as part of the [App Installer](https://www.microsoft.com/en-us/p/app-installer/9nblggh4nns1)
+that is available from the Microsoft Store.
+
+Once you have `winget`, you can install wezterm like so:
+
+```bash
+winget install wez.wezterm
+```
+
+and to later upgrade it:
+
+```bash
+winget upgrade wez.wezterm
+```
+
+### For `Scoop` users
+
+Another option if you prefer to use the command line to manage installing
+software, is [Scoop](https://scoop.sh/).
 
 Wezterm is available from the "Extras" bucket and once you have installed
 scoop itself can be installed like so:
@@ -39,3 +62,12 @@ scoop bucket add extras
 scoop install wezterm
 ```
 
+### For `Chocolatey` users
+
+If you prefer to use [Chocolatey](https://chocolatey.org) to manage software,
+wezterm is availabe from the Community Repository.  It can be installed like
+so:
+
+```bash
+choco install wezterm -y
+```

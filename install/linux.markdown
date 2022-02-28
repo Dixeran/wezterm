@@ -7,26 +7,26 @@ range of Linux distributions.
 
 Download and make the file executable and you're ready to run!
 
-<a href="{{ ubuntu16_AppImage_stable }}" class="btn">AppImage</a>
-<a href="{{ ubuntu16_AppImage_nightly }}" class="btn">Nightly AppImage</a>
+<a href="{{ ubuntu18_AppImage_stable }}" class="btn">AppImage</a>
+<a href="{{ ubuntu18_AppImage_nightly }}" class="btn">Nightly AppImage</a>
 
 ```bash
-curl -LO {{ ubuntu16_AppImage_stable }}
-chmod +x {{ ubuntu16_AppImage_stable_asset }}
+curl -LO {{ ubuntu18_AppImage_stable }}
+chmod +x {{ ubuntu18_AppImage_stable_asset }}
 ```
 
 You may then execute the appimage directly to launch wezterm, with no
 specific installation steps required:
 
 ```bash
-./{{ ubuntu16_AppImage_stable_asset }}
+./{{ ubuntu18_AppImage_stable_asset }}
 ```
 
 That said, you may wish to make it a bit more convenient:
 
 ```bash
 mkdir ~/bin
-mv ./{{ ubuntu16_AppImage_stable_asset }} ~/bin/wezterm
+mv ./{{ ubuntu18_AppImage_stable_asset }} ~/bin/wezterm
 ~/bin/wezterm
 ```
 
@@ -42,18 +42,18 @@ you can try the AppImage download which should work on most Linux systems.
 
 |Distro      | Stable           | Nightly             |
 |------------|------------------|---------------------|
-|Ubuntu16    |[{{ ubuntu16_deb_stable_asset }}]({{ ubuntu16_deb_stable }}) |[{{ ubuntu16_deb_nightly_asset }}]({{ ubuntu16_deb_nightly }})|
 |Ubuntu18    |[{{ ubuntu18_deb_stable_asset }}]({{ ubuntu18_deb_stable }}) |[{{ ubuntu18_deb_nightly_asset }}]({{ ubuntu18_deb_nightly }})|
 |Ubuntu20    |[{{ ubuntu20_deb_stable_asset }}]({{ ubuntu20_deb_stable }})  |[{{ ubuntu20_deb_nightly_asset }}]({{ ubuntu20_deb_nightly }})|
 |Debian9     |[{{ debian9_deb_stable_asset }}]({{ debian9_deb_stable }}) |[{{ debian9_deb_nightly_asset }}]({{ debian9_deb_nightly }})|
 |Debian10    |[{{ debian10_deb_stable_asset }}]({{ debian10_deb_stable }}) |[{{ debian10_deb_nightly_asset }}]({{ debian10_deb_nightly }})|
+|Debian11    |[{{ debian11_deb_stable_asset }}]({{ debian11_deb_stable }}) |[{{ debian11_deb_nightly_asset }}]({{ debian11_deb_nightly }})|
 
 To download and install from the CLI, you can use something like this, which
 shows how to install the Ubuntu 16 package:
 
 ```bash
-curl -LO {{ ubuntu16_deb_stable }}
-sudo apt install -y ./{{ ubuntu16_deb_stable_asset }}
+curl -LO {{ ubuntu20_deb_stable }}
+sudo apt install -y ./{{ ubuntu20_deb_stable_asset }}
 ```
 
 * The package installs `/usr/bin/wezterm` and `/usr/share/applications/org.wezfurlong.wezterm.desktop`
@@ -68,18 +68,17 @@ on most Linux systems.
 
 |Distro      | Stable           | Nightly             |
 |------------|------------------|---------------------|
-|CentOS7     |[{{ centos7_rpm_stable_asset }}]({{ centos7_rpm_stable }}) |[{{ centos7_rpm_nightly_asset }}]({{ centos7_rpm_nightly }})|
 |CentOS8     |[{{ centos8_rpm_stable_asset }}]({{ centos8_rpm_stable }}) |[{{ centos8_rpm_nightly_asset }}]({{ centos8_rpm_nightly }})|
-|Fedora31    |[{{ fedora31_rpm_stable_asset }}]({{ fedora31_rpm_stable }}) |[{{ fedora31_rpm_nightly_asset }}]({{ fedora31_rpm_nightly }})|
-|Fedora32    |[{{ fedora32_rpm_stable_asset }}]({{ fedora32_rpm_stable }}) |[{{ fedora32_rpm_nightly_asset }}]({{ fedora32_rpm_nightly }})|
+|CentOS9     |Nightly builds only|[{{ centos9_rpm_nightly_asset }}]({{ centos9_rpm_nightly }})|
 |Fedora33    |[{{ fedora33_rpm_stable_asset }}]({{ fedora33_rpm_stable }}) |[{{ fedora33_rpm_nightly_asset }}]({{ fedora33_rpm_nightly }})|
 |Fedora34    |[{{ fedora34_rpm_stable_asset }}]({{ fedora34_rpm_stable }}) |[{{ fedora34_rpm_nightly_asset }}]({{ fedora34_rpm_nightly }})|
+|Fedora35    |[{{ fedora35_rpm_stable_asset }}]({{ fedora35_rpm_stable }}) |[{{ fedora35_rpm_nightly_asset }}]({{ fedora35_rpm_nightly }})|
 
 To download and install from the CLI you can use something like this, which
-shows how to install the Fedora 33 package:
+shows how to install the Fedora 35 package:
 
 ```bash
-sudo dnf install -y {{ fedora33_rpm_stable }}
+sudo dnf install -y {{ fedora35_rpm_stable }}
 ```
 
 * The package installs `/usr/bin/wezterm` and `/usr/share/applications/org.wezfurlong.wezterm.desktop`
