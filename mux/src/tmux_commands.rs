@@ -31,6 +31,7 @@ pub(crate) struct PaneItem {
     pane_height: u64,
     pane_left: u64,
     pane_top: u64,
+    history_size: u64,
 }
 
 impl TmuxDomainState {
@@ -191,7 +192,7 @@ impl TmuxCommand for ListAllPanes {
     fn get_command(&self) -> String {
         "list-panes -aF '#{session_id} #{window_id} #{pane_id} \
             #{pane_index} #{cursor_x} #{cursor_y} #{pane_width} #{pane_height} \
-            #{pane_left} #{pane_top}'\n"
+            #{pane_left} #{pane_top} #{history_size}'\n"
             .to_owned()
     }
 
@@ -234,6 +235,10 @@ impl TmuxCommand for ListAllPanes {
                 .next()
                 .ok_or_else(|| anyhow!("missing pane_top"))?
                 .parse()?;
+            let history_size = fields
+                .next()
+                .ok_or_else(|| anyhow!("missing history_size"))?
+                .parse()?;
 
             // These ids all have various sigils such as `$`, `%`, `@`,
             // so skip those prior to parsing them
@@ -252,6 +257,7 @@ impl TmuxCommand for ListAllPanes {
                 pane_height,
                 pane_left,
                 pane_top,
+                history_size,
             });
         }
 
