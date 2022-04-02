@@ -20,7 +20,7 @@ pub(crate) trait TmuxCommand: Send + Debug {
 }
 
 #[derive(Debug)]
-pub(crate) struct PaneItem {
+pub(crate) struct RemotePaneInfo {
     session_id: TmuxSessionId,
     window_id: TmuxWindowId,
     pane_id: TmuxPaneId,
@@ -35,8 +35,8 @@ pub(crate) struct PaneItem {
 }
 
 impl TmuxDomainState {
-    /// check if a PaneItem received from ListAllPanes has been attached
-    fn check_pane_attached(&self, target: &PaneItem) -> bool {
+    /// check if a RemotePaneInfo received from ListAllPanes has been attached
+    fn check_pane_attached(&self, target: &RemotePaneInfo) -> bool {
         let pane_list = self.gui_tabs.borrow();
         let local_tab = match pane_list
             .iter()
@@ -59,7 +59,7 @@ impl TmuxDomainState {
 
     /// after we create a tab for a remote pane, save its ID into the
     /// TmuxPane-TmuxPane tree, so we can ref it later.
-    fn add_attached_pane(&self, target: &PaneItem, tab_id: &TabId) -> anyhow::Result<()> {
+    fn add_attached_pane(&self, target: &RemotePaneInfo, tab_id: &TabId) -> anyhow::Result<()> {
         let mut pane_list = self.gui_tabs.borrow_mut();
         let local_tab = match pane_list
             .iter_mut()
@@ -86,7 +86,7 @@ impl TmuxDomainState {
         }
     }
 
-    fn sync_pane_state(&self, panes: &[PaneItem]) -> anyhow::Result<()> {
+    fn sync_pane_state(&self, panes: &[RemotePaneInfo]) -> anyhow::Result<()> {
         // TODO:
         // 1) iter over current session panes
         // 2) create pane if not exist
@@ -246,7 +246,7 @@ impl TmuxCommand for ListAllPanes {
             let window_id = window_id[1..].parse()?;
             let pane_id = pane_id[1..].parse()?;
 
-            items.push(PaneItem {
+            items.push(RemotePaneInfo {
                 session_id,
                 window_id,
                 pane_id,
