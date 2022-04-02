@@ -4,6 +4,7 @@ use crate::pane::alloc_pane_id;
 use crate::tab::{Tab, TabId};
 use crate::tmux::{TmuxDomain, TmuxDomainState, TmuxRemotePane, TmuxTab};
 use crate::tmux_pty::{TmuxChild, TmuxPty};
+use crate::tmux_pane::{TmuxPane};
 use crate::{Mux, Pane};
 use anyhow::{anyhow, Context};
 use portable_pty::{MasterPty, PtySize};
@@ -149,12 +150,13 @@ impl TmuxDomainState {
                 Box::new(writer),
             );
 
-            let local_pane: Rc<dyn Pane> = Rc::new(LocalPane::new(
+            let local_pane: Rc<dyn Pane> = Rc::new(TmuxPane::new(
                 local_pane_id,
                 terminal,
                 Box::new(child),
                 Box::new(pane_pty),
                 self.domain_id,
+                pane.history_size
             ));
 
             let tab = Rc::new(Tab::new(&size));

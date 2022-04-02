@@ -49,8 +49,8 @@ struct CachedProcInfo {
 }
 
 pub struct LocalPane {
-    pane_id: PaneId,
-    terminal: RefCell<Terminal>,
+    pub(crate) pane_id: PaneId,
+    pub(crate) terminal: RefCell<Terminal>,
     process: RefCell<ProcessState>,
     pty: RefCell<Box<dyn MasterPty>>,
     domain_id: DomainId,
